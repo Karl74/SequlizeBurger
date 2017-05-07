@@ -1,20 +1,24 @@
-var orm = require("../config/orm.js");
 
 
-var burgerOp = {
-	all: function(cb) {
-		orm.selectAll(function(res){
-			cb(res);
-		});
-		},
+var Sequelize = require("sequelize");
+var sequelize = require("../config/connection.js");
 
-	create: function (name, cb){
-		orm.create(name, cb);
+var Burgers = sequelize.define("burger", {
+	id:{
+			type:Sequelize.INTEGER,
+			autoIncrement:true,
+			primaryKey:true
 	},
+	burger_name:{
+		type: Sequelize.STRING,
+	},
+	devoured:{Sequelize.BOOLEAN,
+	},
+	timestamps:true
+});
 
-	update: function (id, boolean, cb){
-		orm.updateOne(id, boolean);
-		// cb(res);
-		}
-};
+
+
+
+
 module.exports = burgerOp;
